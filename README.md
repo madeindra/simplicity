@@ -91,12 +91,9 @@ Configure Disqus for comments:
 ## Github Pages
 
 Follow these steps to deploy your Jekyll site using GitHub Actions.
-1. **Prepare Your Repository**: 
-   - Create a special repository using the following format:
-     ```
-     https://github.com/username/username.github.io
-     ```
-     Replace `username` with your GitHub username.
+1. **Create a New Repository with this Template**: 
+   - Click on `Use this template` and click on `Create a new repository`
+   - Use this format for the repository name `username.github.io` with username being your Hub username
 
 2. **Clone the Repository and Configure**: 
    - Clone your repository and make any necessary configurations:
@@ -171,9 +168,9 @@ Follow these steps to deploy your Jekyll site using GitHub Actions.
 7. **View Your Deployed Site**:
    - Open your browser and navigate to:
      ```
-     https://{username}.github.io/{repository}
+     https://{username}.github.io
      ```
-     Replace `username` with your GitHub username, and `{repository}` with the name of your repository.
+     Replace `username` with your GitHub username
 
 And that's it! Your Jekyll site should now be live on GitHub Pages.
 
