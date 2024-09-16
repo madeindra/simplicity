@@ -1,0 +1,54 @@
+---
+layout: default
+---
+
+{% include header.html %}
+
+<main class="container mx-auto px-4 flex-grow">
+
+    <div class="relative max-w-prose mb-6 mx-auto">
+        <!-- Featured Image -->
+        {% if page.feature_image %}
+        <div class="relative overflow-hidden rounded">
+            {% if site.about.author_image contains 'http://' or site.about.author_image contains 'https://' %}
+            <img src="{{ page.image }}" alt="Featured image" class="w-full h-[40vh] md:h-[50vh] object-cover">
+            {% else %}
+            <img src="{{ page.image | prepend: site.baseurl | prepend: site.url }}" alt="Featured image" class="w-full h-[40vh] md:h-[50vh] object-cover">
+            {% endif %}
+
+            <!-- Black Overlay -->
+            <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        </div>
+        {% endif %}
+
+
+        <!-- Title Overlay -->
+        <div
+            class="{% if page.feature_image %}absolute bottom-0 left-0 right-0 p-6 text-white{% else %}py-6 text-gray-800 dark:text-gray-200{% endif %}">
+            <div class="flex items-center space-x-1 md:space-x-2 text-sm mb-2">
+                <span>{{ page.date | date: "%d %b %Y" }}</span>
+                <span>•</span>
+                <span>{{ page.content | number_of_words | divided_by: 200 | plus: 1 }} min read</span>
+                <span>•</span>
+                <span
+                    class="{% if page.feature_image %}{% else %}text-gray-800 dark:text-gray-200{% endif %}">
+                    {{ page.category }}
+                </span>
+            </div>
+            <h1 class="text-2xl md:text-4xl font-bold">{{ page.title }}</h1>
+        </div>
+    </div>
+
+    <article class="prose dark:prose-invert max-w-prose mx-auto space-y-6 sm:text-lg leading-relaxed">
+        {{ page.content }}
+    </article>
+
+    {% if site.post.comments_allowed %}
+    <div class="max-w-prose mx-auto border-t border-gray-200 my-12"></div>
+    <section class="max-w-prose mx-auto">
+        {% include disqus.html %}
+    </section>
+    {% endif %}
+</main>
+
+{% include footer.html %}

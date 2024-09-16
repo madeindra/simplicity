@@ -1,0 +1,23 @@
+<meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+<meta property="og:description"
+    content="{% if page.description %}{{ page.description | truncate: 160 }}{% else %}{{ site.description | truncate: 160 }}{% endif %}">
+<meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+<meta property="og:site_name" content="{{ site.title }}">
+<meta property="og:type" content="{% if page.is_post %}article{% else %}website{% endif %}">
+{% if page.image %}
+<meta property="og:image" content="{{ page.image | prepend: site.baseurl | prepend: site.url }}">
+{% endif %}
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+<meta name="twitter:description"
+    content="{% if page.description %}{{ page.description | truncate: 160 }}{% else %}{{ site.description | truncate: 160 }}{% endif %}">
+{% if page.image %}
+<meta property="twitter:domain" content="{{ site.url }}">
+<meta property="twitter:url"
+    content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+<meta name="twitter:image" content="{{ page.image | prepend: site.baseurl | prepend: site.url }}">
+{% endif %}
+{% if site.social_media.twitter %}
+<meta name="twitter:site" content="@{{ site.social_media.twitter }}">
+{% endif %}

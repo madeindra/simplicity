@@ -1,0 +1,71 @@
+# site
+url: "https://example.github.io"
+title: "Simplicity"
+author: "John Doe"
+permalink: "/:title/"
+description: ""
+keywords: 
+  - blog
+
+# header
+search_enabled: true
+home_enabled: true
+about_enabled: true
+
+# footer
+sitemap_enabled: true
+
+# homepage
+homepage:
+  welcome:
+    title: "Welcome to Simplicity"
+    subtitle: "A clean and minimalistic Jekyll theme for writing and sharing your thoughts."
+
+# about
+about:
+  author_name: "John Doe"
+  author_image: "/assets/images/author.jpg"
+  social_media_enabled: true
+  description:
+    - "Hi there!"
+    - "I'm John Doe, a passionate software engineer and tech enthusiast. With years of expertise in web development, I love building clean, efficient, and modern web applications."
+    - "When I'm not coding, I enjoy exploring new technologies, writing about my experiences, and sharing tips with the community. My hobbies include hiking, reading sci-fi novels, and photography. I'm always excited to collaborate and share knowledge with like-minded individuals."
+
+# post
+post:
+  comments_allowed: true
+
+# social media
+social_media:
+  email: "example@mail.com"
+  linkedin: "example"
+  github: "example"
+  youtube: "example"
+  twitter: "example"
+  instagram: "example"
+
+# disqus
+disqus:
+  shortname: "example"
+
+# plugins
+plugins:
+  - jekyll-postcss
+  - jekyll-feed
+
+# jekyll-postcss
+postcss:
+  cache: false
+
+# exclude from build
+exclude:
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - postcss.config.js
+  - tailwind.config.js
+

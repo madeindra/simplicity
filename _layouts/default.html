@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en-US' }}">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name=author content="{{ site.author }}">
+
+  {% include favicon.html %}
+
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <meta name="description"
+    content="{% if page.description %}{{ page.description | truncate: 160 }}{% else %}{{ site.description | truncate: 160 }}{% endif %}">
+  <meta name="keywords"
+    content="{% if page.keywords %}{{ page.keywords | join: ', ' }}{% else %}{{ site.keywords | join: ', ' }}{% endif %}">
+
+  <link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html','' }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend:
+    site.baseurl | prepend: site.url }}" />
+
+  <!-- ios dark mode -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <!-- android and other browsers supporting theme-color -->
+  <meta name="theme-color" content="#1A1A1A" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+
+  {% include seo.html %}
+
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+</head>
+
+<body
+  class="min-h-screen flex flex-col transition-colors duration-300 bg-white dark:bg-dark text-gray-900 dark:text-dark-base">
+  {{ content }}
+
+  {% include theme.html %}
+
+  {% if site.search_enabled %}
+  {% include search.html %}
+  {% endif %}
+</body>
+
+</html>

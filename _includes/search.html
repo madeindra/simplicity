@@ -1,0 +1,102 @@
+<script type="text/javascript">
+  let searchData = [];
+
+  // Fetch search data
+  fetch('/search.json')
+    .then(response => response.json())
+    .then(data => {
+      searchData = data;
+    });
+
+  const searchBarMain = document.getElementById('search-bar-main');
+
+  const searchInputSmall = document.getElementById('search-input-small');
+  const searchInputBig = document.getElementById('search-input-big');
+
+  const searchResultsSmall = document.getElementById('search-results-small');
+  const searchResultsBig = document.getElementById('search-results-big');
+
+  searchInputSmall?.addEventListener('input', debounce(handleSearch, 300));
+  searchInputBig?.addEventListener('input', debounce(handleSearch, 300));
+
+  function getVisibleSearch() {
+    const style = window.getComputedStyle(searchBarMain);
+    const displayValue = style.getPropertyValue('display');
+
+    if (displayValue != "none") {
+      return { input: searchInputBig, results: searchResultsBig };
+    }
+    
+    return { input: searchInputSmall, results: searchResultsSmall };
+  }
+
+  function handleSearch() {
+    const { input, results } = getVisibleSearch();
+    const query = input.value.toLowerCase();
+
+    // don't process 1 character
+    if (query.length < 2) {
+      results.innerHTML = '';
+      results.classList.add('hidden');
+      return;
+    }
+
+    const matches = searchData
+      .map(item => ({
+        item,
+        score: fuzzyMatch(query, item.title.toLowerCase())
+      }))
+      .filter(({ score }) => score > 0.3)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 5);
+
+    renderResults(matches);
+  }
+
+  function fuzzyMatch(query, text) {
+    let score = 0;
+    let textIndex = 0;
+
+    for (let i = 0; i < query.length; i++) {
+      const index = text.indexOf(query[i], textIndex);
+      if (index === -1) return 0;
+      score += 1 / (index - textIndex + 1);
+      textIndex = index + 1;
+    }
+
+    return score / query.length;
+  }
+
+  function renderResults(matches) {
+    const { input, results } = getVisibleSearch();
+    if (matches.length === 0) {
+      results.innerHTML = '<p class="p-2 text-gray-500 dark:text-gray-500">No results found</p>';
+    } else {
+      results.innerHTML = matches
+        .map(({ item }) => `
+            <a href="${item.url}" class="block p-2 hover:bg-gray-200 dark:hover:bg-gray-800">
+              <h3 class="font-semibold">${item.title}</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">${item.description}</p>
+            </a>
+          `)
+        .join('');
+    }
+    results.classList.remove('hidden');
+  }
+
+  function debounce(func, delay) {
+    let timeoutId;
+    return function (...args) {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => func.apply(this, args), delay);
+    };
+  }
+
+  // hide search results on click
+  document?.addEventListener('click', (event) => {
+    const { input, results } = getVisibleSearch();
+    if (!input.contains(event.target) && !results.contains(event.target)) {
+      results.classList.add('hidden');
+    }
+  });
+</script>
