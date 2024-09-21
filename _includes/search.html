@@ -16,28 +16,60 @@
   const searchResultsSmall = document.getElementById('search-results-small');
   const searchResultsBig = document.getElementById('search-results-big');
 
-  searchInputSmall?.addEventListener('input', debounce(handleSearch, 300));
-  searchInputBig?.addEventListener('input', debounce(handleSearch, 300));
+  searchInputSmall?.addEventListener('input', debounce(syncAndSearch, 300));
+  searchInputBig?.addEventListener('input', debounce(syncAndSearch, 300));
 
-  function getVisibleSearch() {
+  function getVisibleInput() {
     const style = window.getComputedStyle(searchBarMain);
     const displayValue = style.getPropertyValue('display');
 
     if (displayValue != "none") {
-      return { input: searchInputBig, results: searchResultsBig };
+      return searchInputBig;
     }
     
-    return { input: searchInputSmall, results: searchResultsSmall };
+    return searchInputSmall;
+  }
+
+  function getInvisibleInput() {
+    const style = window.getComputedStyle(searchBarMain);
+    const displayValue = style.getPropertyValue('display');
+
+    if (displayValue == "none") {
+      return searchInputBig;
+    }
+    
+    return searchInputSmall;
+  }
+
+  function setResultInnerHTML(content) {
+    [searchResultsSmall, searchResultsBig].forEach((element) => element.innerHTML = content);
+  }
+
+  function addResultClass(className) {
+    [searchResultsSmall, searchResultsBig].forEach((element) => element.classList.add(className));
+  }
+
+  function removeResultClass(className) {
+    [searchResultsSmall, searchResultsBig].forEach((element) => element.classList.remove(className));
+  }
+
+  function syncAndSearch() {
+    syncValue();
+    handleSearch();
+  }
+
+  function syncValue() {
+    getInvisibleInput().value = getVisibleInput().value;
   }
 
   function handleSearch() {
-    const { input, results } = getVisibleSearch();
-    const query = input.value.toLowerCase();
+    const query = getVisibleInput().value.toLowerCase();
 
     // don't process 1 character
     if (query.length < 2) {
-      results.innerHTML = '';
-      results.classList.add('hidden');
+      setResultInnerHTML('');
+      addResultClass('hidden');
+
       return;
     }
 
@@ -68,11 +100,11 @@
   }
 
   function renderResults(matches) {
-    const { input, results } = getVisibleSearch();
+    let resultInnerHTML;
     if (matches.length === 0) {
-      results.innerHTML = '<p class="p-2 text-gray-500 dark:text-gray-500">No results found</p>';
+      resultInnerHTML = '<p class="p-2 text-gray-500 dark:text-gray-500">No results found</p>';
     } else {
-      results.innerHTML = matches
+      resultInnerHTML = matches
         .map(({ item }) => `
             <a href="${item.url}" class="block p-2 hover:bg-gray-200 dark:hover:bg-gray-800">
               <h3 class="font-semibold">${item.title}</h3>
@@ -81,7 +113,9 @@
           `)
         .join('');
     }
-    results.classList.remove('hidden');
+
+    setResultInnerHTML(resultInnerHTML);
+    removeResultClass('hidden');
   }
 
   function debounce(func, delay) {
@@ -94,9 +128,12 @@
 
   // hide search results on click
   document?.addEventListener('click', (event) => {
-    const { input, results } = getVisibleSearch();
-    if (!input.contains(event.target) && !results.contains(event.target)) {
-      results.classList.add('hidden');
+    if (!searchInputSmall.contains(event.target) && !searchResultsSmall.contains(event.target)) {
+      searchResultsSmall.classList.add('hidden');
+    }
+
+    if (!searchInputBig.contains(event.target) && !searchResultsBig.contains(event.target)) {
+      searchResultsBig.classList.add('hidden');
     }
   });
 </script>
