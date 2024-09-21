@@ -14,6 +14,7 @@ about_enabled: true
 
 # footer
 sitemap_enabled: true
+feed_enabled: true
 
 # homepage
 homepage:
@@ -31,10 +32,6 @@ about:
     - "I'm John Doe, a passionate software engineer and tech enthusiast. With years of expertise in web development, I love building clean, efficient, and modern web applications."
     - "When I'm not coding, I enjoy exploring new technologies, writing about my experiences, and sharing tips with the community. My hobbies include hiking, reading sci-fi novels, and photography. I'm always excited to collaborate and share knowledge with like-minded individuals."
 
-# post
-post:
-  comments_allowed: true
-
 # social media
 social_media:
   email: "example@mail.com"
@@ -51,6 +48,7 @@ disqus:
 # plugins
 plugins:
   - jekyll-postcss
+  - jekyll-sitemap
   - jekyll-feed
 
 # jekyll-postcss
