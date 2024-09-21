@@ -57,6 +57,7 @@ You can customize various aspects of the theme by modifying the `_config.yml` fi
 
 ### Footer Settings
 - **`sitemap_enabled`**: Enable or disable the sitemap link in the footer (true/false).
+- **`feed_enabled`**: Enable or disable the rss feed link in the footer (true/false).
 
 ### Homepage Settings
 Customize the content of your homepage:
@@ -69,10 +70,6 @@ Customize the content of your About page:
 - **`about.author_image`**: The path to the author's image (e.g., `/assets/images/author.jpg`).
 - **`about.social_media_enabled`**: Enable or disable social media links (true/false).
 - **`about.description`**: A list of paragraphs describing the author.
-
-### Post Settings
-Customize the behavior of posts:
-- **`post.comments_allowed`**: Enable or disable comments on posts (true/false).
 
 ### Social Media Settings
 Add your social media handles:
@@ -87,6 +84,14 @@ Add your social media handles:
 Configure Disqus for comments:
 - **`disqus.shortname`**: Your Disqus shortname.
 
+### Per Post Settings
+Available config for each posts:
+- **`category`**: Category of the post.
+- **`image`**: Image for post preview on homepage.
+- **`feature_image`**: Show image as featured on top of the post page (true/false).
+- **`description`**: Post description on homepage.
+- **`keywords`**: Keywords for metadata of the post page.
+- **`comments`**: Enable disqus comment on the page (true/false).
 
 ## Github Pages
 
