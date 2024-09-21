@@ -43,7 +43,7 @@ layout: default
         {{ page.content }}
     </article>
 
-    {% if site.post.comments_allowed %}
+    {% if page.comments %}
     <div class="max-w-prose mx-auto border-t border-gray-200 my-12"></div>
     <section class="max-w-prose mx-auto">
         {% include disqus.html %}

@@ -9,7 +9,9 @@ description: "This is an example post with an image on but not featured on the d
 keywords:
   - Example
   - Blog
+comments: false
 ---
+
 
 Markdown is not only simple but also powerful. Let's explore some advanced features that can further enhance your documents.
 

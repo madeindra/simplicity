@@ -5,10 +5,11 @@ date: "2020-03-03 00:00:00"
 category: "Example"
 image: "/assets/images/example-1.jpg"
 feature_image: true
-description: "This is an example post with an image and have it featured on the detail post. Click on the title to see the detail"
+description: "This is an example post with an image and have it featured on the detail post, also comment section is enabled. Click on the title to see the detail"
 keywords:
   - Example
   - Blog
+comments: true
 ---
 
 Jekyll is a simple, blog-aware, static site generator for personal, project, or organizational sites. It's often used for GitHub Pages due to its seamless integration.
