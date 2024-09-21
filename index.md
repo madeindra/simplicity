@@ -19,13 +19,13 @@ title: "Home"
   </div>
   {% endif %}
 
-  <div class="space-y-12">
+  <div class="space-y-8 md:space-y-12">
     {% for post in site.posts %}
-    <div class="flex items-start space-x-6">
+    <div class="flex items-start space-x-4 md:space-x-6">
       <div class="flex-1">
 
         <!-- Date, Reading Time, Category -->
-        <div class="flex items-center text-sm text-gray-500 dark:text-gray-500 mb-2">
+        <div class="flex items-center text-sm text-gray-600 dark:text-gray-400 mb-2">
           <span>{{ post.date | date: "%d %b %Y" }}</span>
           <span class="mx-2">•</span>
           <span>{{ post.content | number_of_words | divided_by: 200 | plus: 1 }} min read</span>
@@ -34,24 +34,25 @@ title: "Home"
         </div>
 
         <!-- Title, Summary, Image -->
-        <div class="flex items-start space-x-6">
-          <div class="flex-1">
-
-            <a href="{{ post.url | relative_url }}" class="no-underline line-clamp-2 lg:line-clamp-1">
-              <h2 class="text-xl font-semibold mb-2 text-left">{{ post.title }}</h2>
+        <div class="flex items-start space-x-4 md:space-x-6">
+          <div class="flex-1 min-w-0">
+            <a href="{{ post.url | relative_url }}" class="no-underline">
+              <h2 class="text-xl font-semibold mb-2 text-left line-clamp-2 md:line-clamp-1">{{ post.title }}</h2>
             </a>
 
-            {% if post.description %}
-            <p class="text-gray-600 dark:text-gray-400 text-justify line-clamp-3 md:line-clamp-4">{{ post.description }}</p>
-            {% else %}
-            <p class="text-gray-600 dark:text-gray-400 text-justify line-clamp-3 md:line-clamp-4">{{ post.content | strip_html | truncate: 160 }}</p>
-            {% endif %}
+            <p class="text-gray-600 dark:text-gray-400 text-justify overflow-hidden">
+              {% if post.description %}
+              <span class="line-clamp-3 md:line-clamp-4">{{ post.description }}</span>
+              {% else %}
+              <span class="line-clamp-3 md:line-clamp-4">{{ post.content | strip_html | truncate: 160 }}</span>
+              {% endif %}
+            </p>
 
           </div>
 
           {% if post.image %}
-          <a href="{{ post.url | relative_url }}">
-            <img src="{{ post.image }}" alt="{{ post.title }}" class="w-32 h-32 object-cover rounded">
+          <a href="{{ post.url | relative_url }}" class="flex-shrink-0">
+            <img src="{{ post.image }}" alt="{{ post.title }}" class="w-24 h-24 md:w-32 md:h-32 object-cover rounded">
           </a>
           {% endif %}
 
