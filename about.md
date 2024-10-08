@@ -23,12 +23,8 @@ title: "About"
   {% endif %}
 
   <div class="prose dark:prose-invert sm:text-lg leading-relaxed text-justify">
-    {% for description in site.about.description %}
-      {% if forloop.first %}
-        <p class="mb-6"><strong>{{ description }}</strong></p>
-      {% else %}
-        <p class="mb-6">{{ description }}</p>
-      {% endif %}
-    {% endfor %}
-  </div>
+        <p class="mb-6"><strong>Hi there!</strong></p>
+        <p class="mb-6">I'm John Doe, a passionate software engineer and tech enthusiast. With years of expertise in web development, I love building clean, efficient, and modern web applications.</p>
+        <p class="mb-6">When I'm not coding, I enjoy exploring new technologies, writing about my experiences, and sharing tips with the community. My hobbies include hiking, reading sci-fi novels, and photography. I'm always excited to collaborate and share knowledge with like-minded individuals.</p>
+    </div>
 </div>

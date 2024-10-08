@@ -28,10 +28,6 @@ about:
   author_name: "John Doe"
   author_image: "/assets/images/author.jpg"
   social_media_enabled: true
-  description:
-    - "Hi there!"
-    - "I'm John Doe, a passionate software engineer and tech enthusiast. With years of expertise in web development, I love building clean, efficient, and modern web applications."
-    - "When I'm not coding, I enjoy exploring new technologies, writing about my experiences, and sharing tips with the community. My hobbies include hiking, reading sci-fi novels, and photography. I'm always excited to collaborate and share knowledge with like-minded individuals."
 
 # social media
 social_media:
