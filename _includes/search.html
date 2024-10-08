@@ -8,62 +8,26 @@
       searchData = data;
     });
 
-  const searchBarMain = document.getElementById('search-bar-main');
+  const searchBar = document.getElementById('search-bar');
+  const searchInput = document.getElementById('search-input');
+  const searchResults = document.getElementById('search-results');
 
-  const searchInputSmall = document.getElementById('search-input-small');
-  const searchInputBig = document.getElementById('search-input-big');
-
-  const searchResultsSmall = document.getElementById('search-results-small');
-  const searchResultsBig = document.getElementById('search-results-big');
-
-  searchInputSmall?.addEventListener('input', debounce(syncAndSearch, 300));
-  searchInputBig?.addEventListener('input', debounce(syncAndSearch, 300));
-
-  function getVisibleInput() {
-    const style = window.getComputedStyle(searchBarMain);
-    const displayValue = style.getPropertyValue('display');
-
-    if (displayValue != "none") {
-      return searchInputBig;
-    }
-    
-    return searchInputSmall;
-  }
-
-  function getInvisibleInput() {
-    const style = window.getComputedStyle(searchBarMain);
-    const displayValue = style.getPropertyValue('display');
-
-    if (displayValue == "none") {
-      return searchInputBig;
-    }
-    
-    return searchInputSmall;
-  }
+  searchInput?.addEventListener('input', debounce(handleSearch, 300));
 
   function setResultInnerHTML(content) {
-    [searchResultsSmall, searchResultsBig].forEach((element) => element.innerHTML = content);
+    searchResults.innerHTML = content;
   }
 
   function addResultClass(className) {
-    [searchResultsSmall, searchResultsBig].forEach((element) => element.classList.add(className));
+    searchResults.classList.add(className);
   }
 
   function removeResultClass(className) {
-    [searchResultsSmall, searchResultsBig].forEach((element) => element.classList.remove(className));
-  }
-
-  function syncAndSearch() {
-    syncValue();
-    handleSearch();
-  }
-
-  function syncValue() {
-    getInvisibleInput().value = getVisibleInput().value;
+    searchResults.classList.remove(className);
   }
 
   function handleSearch() {
-    const query = getVisibleInput().value.toLowerCase();
+    const query = searchInput.value.toLowerCase();
 
     // don't process 1 character
     if (query.length < 2) {
@@ -128,12 +92,8 @@
 
   // hide search results on click
   document?.addEventListener('click', (event) => {
-    if (!searchInputSmall.contains(event.target) && !searchResultsSmall.contains(event.target)) {
-      searchResultsSmall.classList.add('hidden');
-    }
-
-    if (!searchInputBig.contains(event.target) && !searchResultsBig.contains(event.target)) {
-      searchResultsBig.classList.add('hidden');
+    if (!searchInput.contains(event.target) && !searchResults.contains(event.target)) {
+      searchResults.classList.add('hidden');
     }
   });
 </script>

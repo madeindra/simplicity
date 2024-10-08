@@ -8,6 +8,7 @@ keywords:
   - blog
 
 # header
+logo_image: "/assets/images/logo.png"
 search_enabled: true
 home_enabled: true
 about_enabled: true

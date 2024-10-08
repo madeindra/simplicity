@@ -1,26 +1,34 @@
 <header class="py-6">
   <div class="container mx-auto px-4 flex justify-between items-center">
-    <!-- Logo -->
-    <h1 class="text-xl font-semibold">
-      <a href="/" class="hover:text-gray-600 dark:hover:text-white">
-        {{ site.title }}
+    <!-- Logo and Title -->
+    <div class="flex items-center">
+      {% if site.logo_image != "" %}
+      <a href="/">
+        <img src="{{ site.logo_image | prepend: site.baseurl | prepend: site.url }}" alt="Logo" class="h-8 mr-2 block md:hidden" />
       </a>
-    </h1>
+      {% endif %}
+      <h1 class="text-xl font-semibold hidden md:block">
+        <a href="/" class="hover:text-gray-600 dark:hover:text-white">
+          {{ site.title }}
+        </a>
+      </h1>
+    </div>
 
-    <!-- Search Bar (Main, hide on smaller screen) -->
+    <!-- Search Bar-->
     {% if site.search_enabled %}
-    <div  id="search-bar-main" class="relative w-1/3 hidden md:block">
-      <input type="text" id="search-input-big" placeholder="Search..."
+    <div id="search-bar" class="relative w-1/3">
+      <input type="text" id="search-input" placeholder="Search..."
         class="w-full px-4 py-1 border rounded-full focus:outline-none focus:ring-0 bg-white dark:bg-dark transition-colors duration-300">
-      <div id="search-results-big" class="z-[100] absolute left-0 right-0 mt-2 bg-white dark:bg-dark border rounded shadow-lg hidden"
+      <div id="search-results" class="z-[100] absolute left-0 right-0 mt-2 bg-white dark:bg-dark border rounded shadow-lg hidden"
         style="min-width: 150%; left: 50%; transform: translateX(-50%);"></div>
     </div>
     {% endif %}
 
-
     <!-- Navigation -->
-    <div class="flex items-center space-x-6">
-      <nav>
+    <div class="flex items-center space-x-4">
+      
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:block">
         <ul class="flex space-x-6 font-normal">
           {% if site.home_enabled %}
           <li><a href="/" class="hover:text-gray-600 dark:hover:text-white">Home</a></li>
@@ -31,6 +39,30 @@
           {% endif %}
         </ul>
       </nav>
+
+      <!-- Burger Menu Icon -->
+      <div class="relative">
+        <button id="burger-menu" class="md:hidden p-2 rounded-full" aria-label="Toggle mobile menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+
+        <!-- Mobile Menu (Positioned absolutely) -->
+        <div id="mobile-menu" class="hidden md:hidden absolute mt-2 w-24 bg-white dark:bg-dark border rounded shadow-lg z-50">
+          <nav>
+            <ul class="py-2 font-normal">
+              {% if site.home_enabled %}
+              <li><a href="/" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Home</a></li>
+              {% endif %}
+
+              {% if site.about_enabled %}
+              <li><a href="/about" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">About</a></li>
+              {% endif %}
+            </ul>
+          </nav>
+        </div>
+      </div>
 
       <button id="theme-toggle" class="p-2 rounded-full" aria-label="Toggle theme to dark or light mode">
         <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"
@@ -48,13 +80,20 @@
     </div>
   </div>
 
-    <!-- Search Bar (show on smaller screen) -->
-    {% if site.search_enabled %}
-    <div class="mx-auto py-4 w-2/3 block md:hidden">
-      <input type="text" id="search-input-small" placeholder="Search..."
-        class="w-full px-4 py-1 border rounded-full focus:outline-none focus:ring-0 bg-white dark:bg-dark transition-colors duration-300">
-      <div id="search-results-small" class="z-[100] absolute left-0 right-0 mt-2 bg-white dark:bg-dark border rounded shadow-lg hidden"
-        style="min-width: 80%; left: 50%; transform: translateX(-50%);"></div>
-    </div>
-    {% endif %}
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const burgerMenu = document.getElementById('burger-menu');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      burgerMenu.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!burgerMenu.contains(event.target) && !mobileMenu.contains(event.target)) {
+          mobileMenu.classList.add('hidden');
+        }
+      });
+    });
+  </script>
 </header>
