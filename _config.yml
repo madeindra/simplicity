@@ -41,7 +41,7 @@ social_media:
 # giscus (disqus alternative)
 giscus: true
 
-# disqus
+# disqus (giscus alternative)
 disqus:
   shortname: "example"
 

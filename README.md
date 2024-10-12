@@ -188,7 +188,7 @@ Follow these steps to deploy your Jekyll site using GitHub Actions.
 
 And that's it! Your Jekyll site should now be live on GitHub Pages.
 
-## Use Giscus instead of Disqus
+## Choosing Comments System
 
 Giscus is an alternative comment system, it make uses of GitHub Discussions feature, and has not tracking or ads.
 
@@ -198,7 +198,9 @@ To use it instead of Discus, the page repository should fulfill these criterias:
 - The discussion feature is enabled for the repository
 - The Giscus app is installed on the repository
 
-Follow installation guide on [giscus page](https://giscus.app/) and enable the giscus config on the `_config.yml`.
+Follow installation guide on [Giscus page](https://giscus.app/) and enable the giscus config on the `_config.yml`.
+
+If you can't fullfil the requirements above, you can opt-in to use [Disqus](https://disqus.com/). Just create an account and set your username on the `_config.yml`.
 
 ## Acknowledgements
 
