@@ -5,6 +5,8 @@
 
     const themeColorMetaTag = document.querySelector('meta[name="theme-color"]');
 
+    const themeComment = document.getElementById('giscus');
+
     // add click listener to theme toggle button
     themeToggleBtn?.addEventListener('click', function () {
         setTheme(!document?.documentElement?.classList?.contains('dark'));
@@ -27,6 +29,10 @@
             themeToggleLightIcon?.classList?.remove('hidden');
 
             themeColorMetaTag.setAttribute('content', '#1A1A1A');
+
+            if (themeComment) {
+                themeComment.setAttribute('data-theme', 'noborder_dark');
+            }
         } else {
             sessionStorage.theme = 'light';
 
@@ -36,6 +42,10 @@
             themeToggleLightIcon?.classList?.add('hidden');
 
             themeColorMetaTag.setAttribute('content', '#FFFFFF');
+
+            if (themeComment) {
+                themeComment.setAttribute('data-theme', 'noborder_light');
+            }
         }
     }
 </script>

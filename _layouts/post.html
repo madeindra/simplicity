@@ -46,7 +46,11 @@ layout: default
     {% if page.comments %}
     <div class="max-w-prose mx-auto border-t border-gray-200 my-12"></div>
     <section class="max-w-prose mx-auto">
-        {% include disqus.html %}
+        {% if site.giscus %}
+            {% include giscus.html %}
+        {% else %}
+            {% include disqus.html %}
+        {% endif %}
     </section>
     {% endif %}
 </main>

@@ -38,6 +38,9 @@ social_media:
   twitter: "example"
   instagram: "example"
 
+# giscus (disqus alternative)
+giscus: true
+
 # disqus
 disqus:
   shortname: "example"

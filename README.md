@@ -80,6 +80,10 @@ Add your social media handles:
 - **`social_media.twitter`**: Twitter handle.
 - **`social_media.instagram`**: Instagram username.
 
+### Gisqus Settings
+Configure Giscus for comments system:
+- **`giscus`**: Enable giscus comments system instead of Disqus (true/false).
+
 ### Disqus Settings
 Configure Disqus for comments:
 - **`disqus.shortname`**: Your Disqus shortname.
@@ -91,7 +95,12 @@ Available config for each posts:
 - **`feature_image`**: Show image as featured on top of the post page (true/false).
 - **`description`**: Post description on homepage.
 - **`keywords`**: Keywords for metadata of the post page.
-- **`comments`**: Enable disqus comment on the page (true/false).
+- **`comments`**: Enable comments system on the page (true/false).
+
+### Pagination Settings
+Configure homepage's pagination:
+- **`paginate`**: Number of post shown per page
+- **`paginate_path`**: The link structure for pagination (e.g., `/page/:num/`).
 
 ## Github Pages
 
@@ -178,6 +187,18 @@ Follow these steps to deploy your Jekyll site using GitHub Actions.
      Replace `username` with your GitHub username
 
 And that's it! Your Jekyll site should now be live on GitHub Pages.
+
+## Use Giscus instead of Disqus
+
+Giscus is an alternative comment system, it make uses of GitHub Discussions feature, and has not tracking or ads.
+
+To use it instead of Discus, the page repository should fulfill these criterias:
+
+- The repository is a public repository
+- The discussion feature is enabled for the repository
+- The Giscus app is installed on the repository
+
+Follow installation guide on [giscus page](https://giscus.app/) and enable the giscus config on the `_config.yml`.
 
 ## Acknowledgements
 
