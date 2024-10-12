@@ -47,6 +47,11 @@ plugins:
   - jekyll-postcss
   - jekyll-sitemap
   - jekyll-feed
+  - jekyll-paginate
+
+# jekyll-paginate
+paginate: 5
+paginate_path: '/page/:num/'
 
 # jekyll-postcss
 postcss:

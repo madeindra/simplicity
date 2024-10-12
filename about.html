@@ -1,0 +1,35 @@
+---
+layout: page
+title: "About"
+---
+
+<main class="flex-grow container max-w-prose mx-auto px-4 flex flex-col text-center">
+  <!-- Profile Image -->
+  {% if site.about.author_image %}
+  <div class="py-6 px-6">
+    {% if site.about.author_image contains 'http://' or site.about.author_image contains 'https://' %}
+    <img src="{{ site.about.author_image }}" alt="{{ site.about.author_name }}"
+      class="w-48 h-48 object-cover rounded-lg mx-auto">
+    {% else %}
+    <img src="{{ site.about.author_image | prepend: site.baseurl | prepend: site.url }}"
+      alt="{{ site.about.author_name }}" class="w-48 h-48 object-cover rounded-lg mx-auto">
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <!-- Social Media -->
+  {% if site.about.social_media_enabled %}
+  <div class="pb-6 px-6">
+    {% include social.html %}
+  </div>
+  {% endif %}
+
+  <div class="prose dark:prose-invert sm:text-lg leading-relaxed text-justify">
+    <p class="mb-6"><strong>Hi there!</strong></p>
+    <p class="mb-6">I'm John Doe, a passionate software engineer and tech enthusiast. With years of expertise in web
+      development, I love building clean, efficient, and modern web applications.</p>
+    <p class="mb-6">When I'm not coding, I enjoy exploring new technologies, writing about my experiences, and sharing
+      tips with the community. My hobbies include hiking, reading sci-fi novels, and photography. I'm always excited to
+      collaborate and share knowledge with like-minded individuals.</p>
+  </div>
+  </div>
